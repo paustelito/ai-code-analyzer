@@ -129,3 +129,6 @@ Document that leaches to the theoretical mark:
 - https://github.com/oscarkarnalim/sourcecodeplagiarismdataset
 - Contains **467 cases** of codes with and without plagiarism
     - For plagiarized codes, each code has codes corresponding to six levels of plagiarism
+
+# Bibliography
+[^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, “Detecting AI-Generated Code in Introductory Programming Courses,” Proceedings of the 57th ACM Technical Symposium on Computer Science Education, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
