@@ -130,5 +130,7 @@ Document that leaches to the theoretical mark:
 - Contains **467 cases** of codes with and without plagiarism
     - For plagiarized codes, each code has codes corresponding to six levels of plagiarism
 
+Testing how citations work in Github READMEs[^1].
+
 # Bibliography
-[^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, “Detecting AI-Generated Code in Introductory Programming Courses,” Proceedings of the 57th ACM Technical Symposium on Computer Science Education, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
+[^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, “Detecting AI-Generated Code in Introductory Programming Courses,” *Proceedings of the 57th ACM Technical Symposium on Computer Science Education*, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
