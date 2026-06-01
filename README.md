@@ -130,7 +130,18 @@ Document that leaches to the theoretical mark:
 - Contains **467 cases** of codes with and without plagiarism
     - For plagiarized codes, each code has codes corresponding to six levels of plagiarism
 
-Testing how citations work in Github READMEs[^1].
 
-# Bibliography
-[^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, “Detecting AI-Generated Code in Introductory Programming Courses,” *Proceedings of the 57th ACM Technical Symposium on Computer Science Education*, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
+
+[^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, "Detecting AI-Generated Code in Introductory Programming Courses,” *Proceedings of the 57th ACM Technical Symposium on Computer Science Education*, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
+
+[^2]: Y. Rong and Y. Zhou, "Quantifying cross-language code reuse via function-level clone detection,” *Journal of King Saud University Computer and Information Sciences*, vol. 37, no. 10, Nov. 2025, doi: 10.1007/s44443-025-00362-2. [Online]. Available: https://doi.org/10.1007/s44443-025-00362-2.
+
+[^3]: N. Siddiqui and Deepshikha, "Real-Time Code Plagiarism Detection Using NLP and Machine Learning for Academic and Industry Applications,” *International Research Journal of Engineering and Technology (IRJET)*, vol. 12, no. 6, June 2025. [Online]. Available: https://www.irjet.net/archives/V12/i6/IRJET-V12I689.pdf.
+
+[^4]: S. Chakraborty, A. Singh Bedi, S. Zhu, B. An, D. Manocha, and F. Huang, "On the Possibilities of AI-Generated Text Detection,” *Proceedings of the 41st International Conference on Machine Learning*, vol. 235, Oct. 2023. doi: 10.48550/arXiv.2304.04736. [Online]. Available: https://arxiv.org/pdf/2304.04736.
+
+[^5]: C.L. Gangothri and S. Chandrappa, "Plagiarism Detection System using Python with Text Similarity Analysis and Result Visualization,” *International Journal of Computational Intelligence in Engineering (IJCIE)*, vol. 1, no. 2, pp. 01-16, Apr. 2026. doi: 10.5281/zenodo.19554540. [Online]. Available: https://doi.org/10.5281/zenodo.19554540.
+
+[^6]: D. Álvarez-Fidalgo and F. Ortin, "CLAVE: A deep learning model for source code authorship verification with contrastive learning and transformer encoders,” *Information Processing & Management*, vol. 62, no. 3, pp. 104005–104005, Dec. 2024. doi: 10.1016/j.ipm.2024.104005. [Online]. Available: https://doi.org/10.1016/j.ipm.2024.104005.
+
+[^7]: A. Gurioli, M. Gabbrielli, and S. Zacchiroli, "Is This You, LLM? Recognizing AI-written Programs with Multilingual Code Stylometry", *IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER 2025)*, pp. 394–405, Dec. 2024, doi: 10.48550/arXiv.2412.14611. [Online]. Available: https://arxiv.org/pdf/2412.14611.
