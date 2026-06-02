@@ -83,7 +83,7 @@ The recall represents how many cases of the target class are correctly identifie
 
 The F1-Score combines accuracy and recall metrics into a single indicator. It is calculated using the harmonic mean of both metrics and allows evaluating the balance between correctly detecting cases of plagiarism and avoiding false alarms. This metric is especially useful when there is an imbalance between classes or when seeking a comprehensive evaluation of model performance. For our proposal, we consider it good performance to reach an F1-Score of **80 or more**. The average of the F1-Scores in our theoretical framework is **90.78**, so our goal is to reach **89% F1-Score**.
 
-## Datasets Used
+## Data Collection
 For this project, we combine Java code examples from a variety of sources in order to obtain a balanced and decently-sized dataset to train and evaluate the system. Though we pool from all the following datasets, we do not necessarily use all the data from all the datasets. The details of each dataset can be found below:
 
 ### The Dataset of Programming Contest Plagiarism in Java (ConPlag V2)
@@ -111,16 +111,24 @@ For this project, we combine Java code examples from a variety of sources in ord
   - **Plagiarized**: 1,350,000 code pairs
   - **Original**: 558,065 code pairs
 
-## Data preprocessing
+## Data Preprocessing
 We define two separate datasets to tackle both fronts of our system: one dataset of clone pairs for similarity detection and one dataset of AI vs. human written code for AI detection. Their characteristics are as follows:
 
 ### Similarity detection dataset
-  - Made up of a combination of the Toma-Machine, IR-PLAG, and ConPlag datasets
+  - Contains **30,000** code examples
+    - **Plagiarized**: 15,000 code examples
+    - **Original**: 15,000 code examples
+  - Made up of samples from the Toma-Machine, IR-PLAG, and ConPlag datasets
 
 ### AI detection dataset
+  - Contains **30,000** code examples
+    - **AI**: 15,000 code examples
+    - **Human**: 15,000 code examples
   - Made up entirely of the HMCorp Dataset (sampled from its 221K code examples)
 
-Due to the size of the datasets, we cannot upload the original files to the repository. We create a local /Dataset folder, where we have the ai_detection subfolder and the id2sourcecode subfolder.
+Since our dataset sources were assembled for investigation projects and our proposed architecture includes CodeBERT, which is pre-trained on raw code, we acknowledge the code examples have already been filtered for quality, so we do not manipulate them as part of data cleaning. In terms of preprocessing, we only remove nulls, duplicates, and any code examples that are below five lines, since they are not long enough to generate useful information for our analysis after parsing and tokenization [^6]. We also handle an **80 / 10 / 10 split** for train, val, and test datasets [^1][^6]. Through careful sampling, we ensure the datasets are **balanced** after the split, with an equal 50/50 representation of the positive and negative class (be it AI/human or plagarized/original code).
+
+Due to the size of the datasets, we cannot upload the original files to the repository, so the ai_detection subfolder and the id2sourcecode subfolder are hidden by a *gitignore* file within the /Dataset folder, which also contains ir_plag and conplag. After preprocessing, we store the train, test, and validation datasets for plagiarism and AI detection in CSV format for ease during the rest of the model development cycle. Those CSV files can be found in /Dataframes.
 
 [^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, "Detecting AI-Generated Code in Introductory Programming Courses,” *Proceedings of the 57th ACM Technical Symposium on Computer Science Education*, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
 
