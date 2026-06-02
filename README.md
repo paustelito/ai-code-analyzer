@@ -6,9 +6,9 @@
 
 | Name                             | ID        |
 |----------------------------------|-----------|
-| Paulina Fernanda Almada Martínez | A01710029
-| Yael Cortes Rubio                | A01275893
-| Miguel Ángel Barrón Sánchez      | A01710304
+| Paulina Fernanda Almada Martínez | A01710029 |
+| Yael Cortes Rubio                | A01275893 |
+| Miguel Ángel Barrón Sánchez      | A01710304 |
 
 ### Teachers
 - Manuel Iván Casillas del Llano
@@ -84,12 +84,7 @@ The recall represents how many cases of the target class are correctly identifie
 The F1-Score combines accuracy and recall metrics into a single indicator. It is calculated using the harmonic mean of both metrics and allows evaluating the balance between correctly detecting cases of plagiarism and avoiding false alarms. This metric is especially useful when there is an imbalance between classes or when seeking a comprehensive evaluation of model performance. For our proposal, we consider it good performance to reach an F1-Score of **80 or more**. The average of the F1-Scores in our theoretical framework is **90.78**, so our goal is to reach **89% F1-Score**.
 
 ## Datasets Used
-
-### ROSETTA MP [^7]
-- Contains **12,351** Java code examples in plain text
-    - **AI Generated**: 6,176 code examples
-    - **Human Written**: 6,175 code examples
-- The AI-generated code was generated with StarCoder2 (an open source LLM) using a code translation process, where the model is given a solution written by a human in another language and asked to translate the code into Java
+For this project, we combine Java code examples from a variety of sources in order to obtain a balanced and decently-sized dataset to train and evaluate the system. Though we pool from all the following datasets, we do not necessarily use all the data from all the datasets. The details of each dataset can be found below:
 
 ### The Dataset of Programming Contest Plagiarism in Java (ConPlag V2)
 - Contains **911** Java files
@@ -98,9 +93,9 @@ The F1-Score combines accuracy and recall metrics into a single indicator. It is
 
 ### HMCorp Dataset [^8]
 - Contains **221,795** Java code examples in plain text
-    - **AI Generated**: 221,795 code examples
-    - **Human Written**: 221,795 code examples
-- The AI-generated code was generated via prompts describing the natural language functionality with ChatGPT's gpt-3.5-turbo
+    - **AI**: 221,795 code examples
+    - **Human**: 221,795 code examples
+- The AI-generated code was generated via prompts describing the functionality in natural language with ChatGPT's gpt-3.5-turbo
     - There are also codes generated with DeepSeek-Coder-Instruct and Qwen2.5-Coder-Instruct, but we will not use them for this project
 
 ### IR-PLAG Dataset
@@ -113,9 +108,19 @@ The F1-Score combines accuracy and recall metrics into a single indicator. It is
 
 ### Toma-Machine Learning Dataset [^9]
 - Contains **73,319** Java files
-  - **Plagiarism**: 1,350,000 code pairs
+  - **Plagiarized**: 1,350,000 code pairs
   - **Original**: 558,065 code pairs
 
+## Data preprocessing
+We define two separate datasets to tackle both fronts of our system: one dataset of clone pairs for similarity detection and one dataset of AI vs. human written code for AI detection. Their characteristics are as follows:
+
+### Similarity detection dataset
+  - Made up of a combination of the Toma-Machine, IR-PLAG, and ConPlag datasets
+
+### AI detection dataset
+  - Made up entirely of the HMCorp Dataset (sampled from its 221K code examples)
+
+Due to the size of the datasets, we cannot upload the original files to the repository. We create a local /Dataset folder, where we have the ai_detection subfolder and the id2sourcecode subfolder.
 
 [^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, "Detecting AI-Generated Code in Introductory Programming Courses,” *Proceedings of the 57th ACM Technical Symposium on Computer Science Education*, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
 
