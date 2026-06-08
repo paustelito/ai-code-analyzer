@@ -1,13 +1,12 @@
-from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
-import tensorflow as tf
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 
-def create_model(num_labels=2):
+def create_model():
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
 
-    model = TFAutoModelForSequenceClassification.from_pretrained(
+    model = AutoModelForSequenceClassification.from_pretrained(
         "microsoft/codebert-base",
-        num_labels=num_labels
+        num_labels=2
     )
 
     return tokenizer, model
