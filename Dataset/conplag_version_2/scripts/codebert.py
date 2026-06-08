@@ -1,23 +1,13 @@
-import os
-import json
-import torch
+from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
+import tensorflow as tf
 
-from sklearn.metrics.pairwise import cosine_similarity
-from transformers import AutoTokenizer, AutoModel
 
-from algorithm import Algorithm
+def create_model(num_labels=2):
+    tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
 
-class CodeBERTAlgorithm(Algorithm):
+    model = TFAutoModelForSequenceClassification.from_pretrained(
+        "microsoft/codebert-base",
+        num_labels=num_labels
+    )
 
-    def __init__(self, version: int, quiet: bool) -> None:
-        Algorithm.__init__(self, 'codebert', version, quiet)
-
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            "microsoft/codebert-base"
-        )
-
-        self.model = AutoModel.from_pretrained(
-            "microsoft/codebert-base"
-        )
-
-        os.makedirs(self.GEN_DIR, exist_ok=True)
+    return tokenizer, model
