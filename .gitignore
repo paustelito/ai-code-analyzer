@@ -2,3 +2,7 @@ Dataset/id2sourcecode
 Dataset/ai_detection
 models/codebert_ai_detector/model.safetensors
 models/codebert_plagiarism_detector/model.safetensors
+.venv/
+.vscode/
+__pycache__/
+.ipynb_checkpoints/
