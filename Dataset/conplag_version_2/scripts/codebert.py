@@ -6,7 +6,8 @@ def create_model():
 
     model = AutoModelForSequenceClassification.from_pretrained(
         "microsoft/codebert-base",
-        num_labels=2
+        num_labels=2,
+        output_hidden_states=True
     )
 
     return tokenizer, model
