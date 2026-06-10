@@ -6,3 +6,7 @@ models/codebert_plagiarism_detector/model.safetensors
 .vscode/
 __pycache__/
 .ipynb_checkpoints/
+
+
+
+Training/Embeddings
