@@ -135,7 +135,7 @@ For this project, we combine Java code examples from a variety of sources in ord
 
 ### IR-PLAG Dataset
 - Contains **460** Java files set up as seven cases
-    - **Plariagized**: 355 code examples
+    - **Plagiarized**: 355 code examples
     - **Original**: 105 code examples
 - Due to the nature of the case setup, we can combine the files to generate different code pairs during training, resulting in **10,091** clone pairs total
     - **Plagiarized**: 9,251 code pairs
@@ -339,7 +339,7 @@ The process followed by the plagiarism detection encoder is:
 6. Evaluate the model using the validation and test sets.
 7. Save the trained model inside `models/codebert_plagiarism_detector`.
 
-These embeddings were later used as inputs for Machine Learning classifiers.
+Unlike the AI detection pipeline, the plagiarism detection model uses CodeBERT directly as the final binary classifier. In this case, separate embedding CSV files are not generated for a Machine Learning decoder.
 
 Since CodeBERT is computationally expensive, the training process was executed using Google Colab GPU.
 
@@ -363,7 +363,8 @@ RandomForestClassifier(
 
 ## Summary of architecture
 
-[insert diagram of architecture]
+<br>
+<img src="images/model_architecture.png" width="1000">
 
 ---
 
@@ -393,17 +394,59 @@ The F1-Score combines accuracy and recall metrics into a single indicator. It is
 
 ## Results
 
-Tables for AI
+### AI detection results
 
-Table for plagiarism
+The following results were obtained using the decoder Random Forest and encoder architecture (Embeddings + stylometric + AST):
+
+| Metric | Train | Validation | Test |
+|---------|-----------:|------:|---------:|
+| Accuracy | 1 | 0.9993 | 0.9987 |
+| Precision | 1 | 0.9993 | 0.9987 |
+| Recall | 1 | 0.9993 | 0.9987 |
+| F1-score | 1 | 0.9993 | 0.9987 |
+
+<br>
+<img src="images/RF_matrix_ai.png" width="500">
+
+<br>
+<img src="images/RF_ai_train_vs_val_acc.png" width="600">
+
+An ablation experiment was also performed to compare the contribution of each input representation.
+
+| Input Features | Test Accuracy | Test F1-Score | 
+|---|---:|---:| 
+| CodeBERT embeddings only | 0.9987 | 0.9987 | 
+| Stylometric + AST features only | 0.7437 | 0.7344 | 
+| CodeBERT embeddings + Stylometric + AST features | 0.9987 | 0.9987 |
+
+
+### Plagiarism detection results
+
+Description 1 - Yael
+
+<br>
+<img src="images/insert_image.png" width="300">
+
+Description 1 - Pau
+
+<br>
+<img src="images/insert_image.png" width="300">
 
 ---
 
 ## Result Interpretation
 
-Description for AI
+### For AI detection
 
-Description for plagiarism
+The behavior of the metrics is peculiar. Why? all the metrics are the same, this happens when 2 conditions are accomplished:
+1. The dataset is balanced (so in ours).
+2. The classification is symmetric (so as ours - corroborate on the confusion matrix).
+
+On the other side, the fit of the model is great. The gap of accuracy between Train & validation is barely .001, meaning the model actually learns how to classify.
+
+Finally, Stylometric + AST features are useful on their own but they do not improve the final result when combined with CodeBERT embeddings because the embeddings already capture most of the predictive information.
+
+### For plagiarism
 
 ---
 
@@ -414,7 +457,7 @@ Several validation procedures were performed to verify the reliability of the re
 - Duplicate Embedding Check
 - Shuffled Label Test: Training labels were randomly shuffled and the model was retrained.
 
-#### Suffling results
+#### Shuffling results
 
 | Metric | Validation | Test |
 |---------|-----------:|------:|
@@ -433,15 +476,9 @@ Accuracy, Precision, Recall, and F1-Score produced nearly identical values becau
 
 ---
 
-## Conclusions
+## Conclusion
 
-This project demonstrates that CodeBERT embeddings are highly effective for detecting AI-generated Java source code.
-
-The Random Forest classifier achieved near-perfect performance when operating on CodeBERT embeddings, indicating that most predictive power originates from the embedding representation itself.
-
-Stylometric and AST-based features also contributed meaningful information, achieving an F1-Score of approximately **0.7344** when used independently.
-
-Overall, the project combines semantic, structural, and stylistic representations to analyze Java source code.
+Insert general conclusion
 
 ---
 
