@@ -363,7 +363,8 @@ RandomForestClassifier(
 
 ## Summary of architecture
 
-[insert diagram of architecture]
+<br>
+<img src="images/model_architecture.png" width="1000">
 
 ---
 
