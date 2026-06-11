@@ -456,7 +456,7 @@ Potential future improvements include:
   - Logistic Regression
 - Extending the framework to additional programming languages.
 
----
+--- 
 
 ## References
 
