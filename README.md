@@ -1,14 +1,14 @@
 # Plagiarism Detection in Java Source Code
 
-## Development of Advanced Computer Science Applications (TC3002B)
+## Development of advanced computer science applications
 
 ### Team members
 
-| Name                             | ID        |
-|----------------------------------|-----------|
-| Paulina Fernanda Almada Martínez | A01710029 |
-| Yael Cortes Rubio                | A01275893 |
-| Miguel Ángel Barrón Sánchez      | A01710304 |
+| Nombre | Matrícula |
+|----------------------|---------------------|
+| Paulina Fernanda Almada Martínez | A01710029
+| Yael Cortes Rubio | A01275893
+| Miguel Ángel Barrón Sánchez | A01710304
 
 ### Teachers
 - Manuel Iván Casillas del Llano
@@ -19,82 +19,117 @@
 
 ## Introduction
 
-Copyright protection represents one of the main challenges in the digital age due to the accelerated growth of content creation and distribution. Among the different types of protected works are computer programs, whose improper use, unauthorized copying, or modification for the purpose of hiding similarities may constitute copyright infringement.
+Copyright protection represents one of the main challenges in the digital age due to the accelerated growth of content creation and distribution. Among the different types of protected works are computer programs, whose improper use, unauthorized copying or modification for the purpose of hiding similarities may constitute copyright infringement.
 
-Within academic and professional contexts, detecting similarity between source code fragments is a fundamental tool to identify possible cases of plagiarism, improper reuse of software or intellectual property violations. However, this task is complex because two programs can implement the same solution using different programming styles, structures, or naming conventions. As part of the challenge proposed in the **Development of Advanced Computer Science Applications** course, this project focuses on the development of a specialized deep learning tool for the detection of similarity and possible plagiarism in source code written in Java. Our solution seeks to analyze two programs and identify similarity patterns that allow estimating the degree of coincidence between them.
+Within the academic and professional context, detecting similarity between source code fragments is a fundamental tool to identify possible cases of plagiarism, improper reuse of software or intellectual property violations. However, this task is complex because two programs can implement the same solution using different programming styles, structures, or naming conventions. As part of the challenge proposed in the field **Development of Advanced Computer Science Applications**, this project focuses on the development of a specialized tool for the detection of similarity and possible plagiarism in source code written in Java. The solution seeks to analyze programs developed by different authors and identify similarity patterns that allow estimating the degree of coincidence between them.
 
-To achieve this objective, techniques related to machine learning, quantitative methods and concepts derived from source code analysis will be used. In addition, a comparison of the results obtained will be made with approaches reported in state of the art investigations, evaluating the precision, efficiency and scalability of our proposal.
+To achieve this objective, techniques related to Machine Learning, Quantitative Methods and concepts derived from source code analysis will be used. In addition, a comparison of the results obtained will be made with approaches reported in the state of the art, evaluating the precision, efficiency and scalability of the proposal. 
 
-The development of this tool aims to contribute to the early detection of possible copyright infringements in software, providing a support mechanism for educational and professional environments where the originality of code is a fundamental quality aspect.
+The development of this tool aims to contribute to the early detection of possible copyright infringements in software, providing a support mechanism for educational and professional environments where the originality of the code is a fundamental aspect.
+
+---
+
+## Repository Structure
+
+```text
+.
+├── Dataframes/
+│   ├── df_ai/ csv files
+│   └── df_plagiarism/ csv files
+|
+├── Dataset/
+|   ├── conplag_version_2/ csv files
+|   └── IR-Plag-Dataset/ csv files
+|
+├── images/ png files
+|
+├── models/
+│   ├── codebert_ai_detector/ json files
+|   ├── codebert_plagiarism_detector/ json files
+│   └── ML_algorithms/ 
+|       └── random_forest_model.py
+|
+├── Preprocessing/
+|   ├── ast_extraction.ipynb
+|   └── data_preparation.ipynb
+|
+├── Training/
+|   ├── Embeddings/
+|   |   ├── ai_detection/ csv files
+|   |   └── plagiarism_detection/ csv files
+|   ├── codeBERT_ai_detection.ipynb
+|   ├── codeBERT_plagiarism_detection.ipynb
+|   └── decoder_ML_algorithms.ipynb
+│
+├── .gitignore
+└── README.md
+```
 
 ---
 
 ## Theoretical Framework
 
-Plagiarism detection in source code has been an active area of research due to the increase in automatic code generation tools and the ease with which software can be reused or modified. With the aim of understanding the most effective methodologies to identify similarities between programs, a review of various scientific articles related to plagiarism detection, code similarity analysis and detection of content generated by generative artificial intelligence (GenAI) was carried out.
+Plagiarism detection in source code has been an active area of research due to the increase in automatic code generation tools and the ease with which software can be reused or modified. With the aim of understanding the most effective methodologies to identify similarities between programs, a review of various scientific articles related to plagiarism detection, code similarity analysis and detection of content generated by Artificial Intelligence was carried out. 
 
-Among the works analyzed, research that uses natural language processing (NLP) techniques, abstract syntax trees (AST), Siamese neural networks, transformer models and vector representations of the code through embeddings stands out. These proposals seek to identify similarities not only at a textual level, but also at a structural and semantic level, allowing cases of plagiarism to be detected even when modifications are made to variable names, comments or program structure.
+Among the works analyzed, research that uses natural language processing (NLP) techniques, abstract syntax trees (AST), Siamese neural networks, Transformer models and vector representations of the code through embeddings stands out. These proposals seek to identify similarities not only at a textual level, but also at a structural and semantic level, allowing cases of plagiarism to be detected even when there are modifications in variable names, comments or program structure.
 
-The reviewed articles show that approaches based on machine learning and deep learning achieve accuracy levels greater than 90%, especially when combining syntactic and semantic representations of the code. Likewise, several studies show that the use of pre-trained models such as CodeBERT and transformer architectures significantly improves detection capacity compared to traditional methods based solely on textual comparison.
+The reviewed articles show that approaches based on machine learning and deep learning achieve accuracy levels greater than 90%, especially when combining syntactic and semantic representations of the code. Likewise, several studies show that the use of pre-trained models such as CodeBERT and Transformer architectures significantly improves detection capacity compared to traditional methods based solely on textual comparison.
 
 ### Code Similarity Detection Techniques
 
 Within the articles, various techniques used in modern plagiarism detection systems were identified, such as:
 
-#### Tokenization and TF-IDF
+### Tokenization and TF-IDF
 
 Which consists of transforming the source code into a sequence of tokens that represent keywords, operators, identifiers and other language elements. Subsequently, TF-IDF is used to convert these tokens into numerical vectors that allow measuring the similarity between programs.
 
-#### Abstract Syntax Trees (ASTs)
+### Abstract Syntax Trees (AST)
 
 ASTs represent the syntactic structure of the code hierarchically. This representation allows structural similarities to be detected even when variable names or writing formats are modified.
 
-#### Code Embeddings
+### Stylometric Analysis
+
+Stylometric analysis focuses on coding style.
+
+Extracted features include:
+
+- Comment density
+- Average line length
+- Line length variance
+- Blank line ratio
+
+These characteristics help distinguish coding habits and formatting patterns.
+
+### Code Embeddings
 
 Models like CodeBERT generate vector representations capable of capturing the semantic meaning of the code. Thanks to this, it is possible to identify functionally equivalent fragments even if they present syntactic differences.
 
-#### Siamese Neural Networks
+### Siamese Neural Networks
 
 Siamese architectures process two programs in parallel and calculate a measure of similarity between their internal representations. This approach has proven to be especially effective for clone detection and code plagiarism.
 
-#### Transformers
-
-Models based on transformers allow programs to analyze complex relationships between the different components of the source code and learn writing patterns characteristic of human authors or GenAI systems.
-
-### Evaluation Metrics
-
-Evaluating the performance of a plagiarism detection tool is a fundamental aspect to determine its reliability and usefulness in real scenarios. In the reviewed articles it is observed that the metrics most used to evaluate classification models are *Accuracy, Precision, Recall* and *F1-Score*, since they allow analyzing different aspects of system performance. Thanks to this, it is possible to identify how many cases were classified correctly, how many errors were made and how effective the tool is at detecting cases of plagiarism.
-
-Using these metrics together provides a more complete view of the model's behavior. For example, a system may have high accuracy, but at the same time have difficulty detecting all cases of plagiarism. For this reason, it is necessary to evaluate multiple indicators before determining the quality of a solution.
-
-#### Accuracy
-
-Accuracy represents the total proportion of correct predictions made by the model with respect to the total predictions made. This metric provides an overview of the tool's performance and provides insight into how well it distinguishes between original code and plagiarized code. For our proposal, we consider it good performance to reach an accuracy of **80 or more**. The average accuracy of our theoretical framework is **91.29**, so our goal is to reach **90% accuracy**.
-
-#### Precision
-
-Precision measures what percentage of cases identified as plagiarism actually correspond to plagiarism. This metric is especially important because it helps reduce false positives, preventing original codes from being incorrectly marked as copies. For our proposal, we consider it good performance to reach an accuracy of **85 or more**. The average precision of our theoretical framework is **92.09**, so our goal is to reach **91% precision**.
-
-#### Recall
-
-The recall represents how many cases of the target class are correctly identified in the predictions. In other words, it tells us how capable the model is of doing its job. For our proposal, we consider it a good performance to reach a recall of **80 or more**. The average recall in our theoretical framework is **91.86**, so our goal is to reach **90% recall**.
-
-#### F1-Score
-
-The F1-Score combines accuracy and recall metrics into a single indicator. It is calculated using the harmonic mean of both metrics and allows evaluating the balance between correctly detecting cases of plagiarism and avoiding false alarms. This metric is especially useful when there is an imbalance between classes or when seeking a comprehensive evaluation of model performance. For our proposal, we consider it good performance to reach an F1-Score of **80 or more**. The average of the F1-Scores in our theoretical framework is **90.78**, so our goal is to reach **89% F1-Score**.
+---
 
 ## Data Collection
 For this project, we combine Java code examples from a variety of sources in order to obtain a balanced and decently-sized dataset to train and evaluate the system. Though we pool from all the following datasets, we do not necessarily use all the data from all the datasets. The details of each dataset can be found below:
 
 ### The Dataset of Programming Contest Plagiarism in Java (ConPlag V2)
-- Contains **911** Java files
-    - **Plagiarized**: 251 code examples
-    - **Original**: 660 code examples
+
+#### Dataset Distribution
+| Class | Instances |
+|---------|---------:|
+| Plagiarized | 251 |
+| Original | 660 |
+| Total | 911 |
 
 ### HMCorp Dataset [^8]
-- Contains **221,795** Java code examples in plain text
-    - **AI**: 221,795 code examples
-    - **Human**: 221,795 code examples
+
+#### Dataset Distribution
+| Class | Instances |
+|---------|---------:|
+| AI-generated code | 221,795 |
+| Human-written code | 221,795 |
+
 - The AI-generated code was generated via prompts describing the functionality in natural language with ChatGPT's gpt-3.5-turbo
     - There are also codes generated with DeepSeek-Coder-Instruct and Qwen2.5-Coder-Instruct, but we will not use them for this project
 
@@ -111,24 +146,319 @@ For this project, we combine Java code examples from a variety of sources in ord
   - **Plagiarized**: 1,350,000 code pairs
   - **Original**: 558,065 code pairs
 
+---
+
 ## Data Preprocessing
-We define two separate datasets to tackle both fronts of our system: one dataset of clone pairs for similarity detection and one dataset of AI vs. human written code for AI detection. Their characteristics are as follows:
 
-### Similarity detection dataset
-  - Contains **30,000** code examples
-    - **Plagiarized**: 15,000 code examples
-    - **Original**: 15,000 code examples
-  - Made up of samples from the Toma-Machine, IR-PLAG, and ConPlag datasets
+The preprocessing stage is divided into two notebooks:
 
-### AI detection dataset
-  - Contains **30,000** code examples
-    - **AI**: 15,000 code examples
-    - **Human**: 15,000 code examples
-  - Made up entirely of the HMCorp Dataset (sampled from its 221K code examples)
+- `data_preparation.ipynb`: loads, cleans, balances, splits, and saves the datasets.
+- `ast_extraction.ipynb`: adds handcrafted features such as approximate token counts, stylometric metrics, and AST-based structural features.
 
-Since our dataset sources were assembled for investigation projects and our proposed architecture includes CodeBERT, which is pre-trained on raw code, we acknowledge the code examples have already been filtered for quality, so we do not manipulate them as part of data cleaning. In terms of preprocessing, we only remove nulls, duplicates, and any code examples that are below five lines, since they are not long enough to generate useful information for our analysis after parsing and tokenization [^6]. We also handle an **80 / 10 / 10 split** for train, val, and test datasets [^1][^6]. Through careful sampling, we ensure the datasets are **balanced** after the split, with an equal 50/50 representation of the positive and negative class (be it AI/human or plagarized/original code).
+We define two separate datasets to tackle both fronts of the system:
 
-Due to the size of the datasets, we cannot upload the original files to the repository, so the ai_detection subfolder and the id2sourcecode subfolder are hidden by a *gitignore* file within the /Dataset folder, which also contains ir_plag and conplag. After preprocessing, we store the train, test, and validation datasets for plagiarism and AI detection in CSV format for ease during the rest of the model development cycle. Those CSV files can be found in /Dataframes.
+1. A **similarity detection dataset**, used to classify whether two Java programs are plagiarized or not.
+2. An **AI detection dataset**, used to classify whether a Java code sample was written by a human or generated by AI.
+
+### Similarity Detection Dataset
+
+The similarity detection dataset is composed of Java code pairs.
+
+Where:
+
+- `code1` is the first Java source code sample.
+- `code2` is the second Java source code sample.
+- `label` represents the class:
+  - `1` = plagiarized / clone pair
+  - `0` = original / non-clone pair
+
+This dataset is made up of samples from:
+
+- IR-PLAG
+- ConPlag V2
+- id2sourcecode
+
+For the plagiarism datasets, the preprocessing notebook reads the original Java files, creates code pairs, assigns binary labels, removes invalid samples, removes duplicates, and balances the classes.
+
+The final similarity detection dataset contains:
+
+| Class | Examples |
+|---|---:|
+| Plagiarized / clone pairs | 15,000 |
+| Original / non-clone pairs | 15,000 |
+| **Total** | **30,000** |
+
+### Data Cleaning
+
+Since the dataset sources were assembled for research purposes and CodeBERT is pretrained on raw source code, the preprocessing stage does not modify the internal logic or formatting of the Java programs.
+
+The cleaning process only performs filtering:
+
+- Remove null values.
+- Remove duplicated examples.
+- Keep only the required columns for each task.
+
+### Train / Validation / Test Split
+
+Both datasets are divided using an **80 / 10 / 10** split:
+
+| Split | Percentage | Examples |
+|---|---:|---:|
+| Train | 80% | 24,000 |
+| Validation | 10% | 3,000 |
+| Test | 10% | 3,000 |
+
+The split is performed using stratification, which preserves the class distribution in each subset.
+
+Both datasets remain balanced after the split.
+
+### Saving Processed Dataframes
+
+After preprocessing, the datasets are saved as CSV files to simplify the rest of the model development process.
+
+The similarity detection files are saved as:
+
+```text
+df_plagiarism_train.csv
+df_plagiarism_val.csv
+df_plagiarism_test.csv
+```
+
+The AI detection files are saved as:
+
+```text
+df_ai_train.csv
+df_ai_val.csv
+df_ai_test.csv
+```
+
+These CSV files are later used for feature extraction, embedding generation, and model training.
+
+Due to the size of the original datasets, some raw dataset folders are not uploaded to the repository. These files are ignored using `.gitignore`, while the processed CSV files are stored inside the `/Dataframes` folder.
+
+### Feature Extraction
+
+Two categories of handcrafted features were extracted:
+
+- Stylometric features
+- AST-based structural features
+
+#### Approximate Token Count
+
+First, the notebook estimates the number of tokens in each code sample using a simple whitespace-based approximation.
+
+For the AI detection dataset, the feature is added as:
+
+```text
+approx_tokens
+```
+
+For the similarity detection dataset, token length is calculated for both code samples:
+
+```text
+approx_tokens_code1
+approx_tokens_code2
+```
+
+This helps estimate the approximate size of each code sample before using token-based models such as CodeBERT.
+
+#### Stylometric Features
+
+| Feature | Description |
+|----------|-------------|
+| `comment_density` | Ratio of comment lines to total lines |
+| `avg_line_length` | Average length of non-empty lines |
+| `line_length_variance` | Variability of line lengths |
+| `blank_line_ratio` | Ratio of blank lines to total lines |
+
+These features capture coding style characteristics.
+
+#### AST and Structural Features
+
+| Feature | Description |
+|----------|-------------|
+| `num_classes` | Number of class declarations |
+| `num_methods` | Number of method declarations |
+| `num_if` | Number of if statements |
+| `num_for` | Number of for loops |
+| `num_while` | Number of while loops |
+| `num_switch` | Number of switch statements |
+| `o_complexity` | Approximate cyclomatic complexity |
+| `max_depth` | Maximum AST depth |
+| `total_nodes` | Total AST nodes |
+| `num_literals` | Number of literals |
+| `num_ids` | Total identifiers |
+| `unique_ids` | Unique identifiers |
+| `id_diversity` | Identifier diversity ratio |
+
+These features describe program structure and complexity.
+
+#### Updated CSV Files
+
+After adding approximate token counts, stylometric features, and AST-based structural features, the updated datasets are saved back as CSV files.
+
+---
+
+## Model Implementation
+
+The project follows an encoder-decoder architecture.
+
+The encoder component is based on CodeBERT and is responsible for transforming Java source code into semantic representations. The decoder component uses traditional Machine Learning models to perform the final classification using the generated representations and handcrafted features.
+
+Two CodeBERT encoders were implemented:
+
+1. One for **AI-generated code detection**.
+2. One for **plagiarism / similarity detection**.
+
+### CodeBERT Encoder for AI Detection
+
+Embedding generation followed these steps:
+
+1. Load the train, validation, and test datasets from `/Dataframes/df_ai`.
+2. Separate the source code from the labels.
+3. Load the CodeBERT tokenizer and model.
+4. Tokenize each Java code sample using padding and truncation with a maximum length of 512 tokens.
+5. Train CodeBERT using the AI detection training set.
+6. Evaluate the model using the validation and test sets.
+7. Save the trained model inside `models/codebert_ai_detector`.
+8. Use the trained CodeBERT model to generate semantic embeddings for each split.
+
+These embeddings were later used as inputs for Machine Learning classifiers.
+
+Since CodeBERT is computationally expensive, the training process was executed using Google Colab GPU.
+
+### CodeBERT Encoder for Plagiarism Detection
+
+The process followed by the plagiarism detection encoder is:
+
+1. Load the train, validation, and test datasets from `/Dataframes/df_plagiarism`.
+2. Separate the two code samples from the labels.
+3. Load the CodeBERT tokenizer and model.
+4. Tokenize each pair of Java programs together.
+5. Train CodeBERT using the plagiarism detection training set.
+6. Evaluate the model using the validation and test sets.
+7. Save the trained model inside `models/codebert_plagiarism_detector`.
+
+These embeddings were later used as inputs for Machine Learning classifiers.
+
+Since CodeBERT is computationally expensive, the training process was executed using Google Colab GPU.
+
+### Random Forest Decoder
+
+The decoder receives numerical representations of the Java code instead of raw source code. Three input configurations were evaluated:
+
+1. CodeBERT embeddings only.
+2. Stylometric + AST features only.
+3. CodeBERT embeddings combined with Stylometric + AST features.
+
+The Random Forest model uses the following configuration:
+
+```python
+RandomForestClassifier(
+    n_estimators=100,
+    max_depth=10,
+    random_state=42
+)
+```
+
+## Summary of architecture
+
+[insert diagram of architecture]
+
+---
+
+## Evaluation Metrics
+
+Evaluating the performance of a plagiarism detection tool is a fundamental aspect to determine its reliability and usefulness in real scenarios. In the reviewed articles it is observed that the metrics most used to evaluate classification models are *Accuracy, Precision, Recall and F1-Score*, since they allow analyzing different aspects of system performance. Thanks to this, it is possible to identify how many cases were classified correctly, how many errors were made and how effective the tool is in detecting cases of plagiarism.
+
+Using these metrics together provides a more complete view of the model's behavior. For example, a system may have high Accuracy, but at the same time have difficulty detecting all cases of plagiarism. For this reason, it is necessary to evaluate multiple indicators before determining the quality of a solution.
+
+### Accuracy
+
+Accuracy represents the total proportion of correct predictions made by the model with respect to the total predictions made. This metric provides an overview of the tool's performance and provides insight into how well it distinguishes between original code and plagiarized code. For our proposal, we consider it good performance to reach an accuracy of **80 or more**. The average accuracy of our theoretical framework is **91.29**, so our goal is to reach **90% accuracy**.
+
+### Precision
+
+Precision measures what percentage of cases identified as plagiarism actually correspond to plagiarism. This metric is especially important because it helps reduce false positives, preventing original codes from being incorrectly marked as copies. For our proposal, we consider it good performance to reach an accuracy of **85 or more**. The average precision of our theoretical framework is **92.09**, so our goal is to reach **91% precision**.
+
+### Recall
+
+The recall represents how many cases of the target class are correctly identified in the predictions. In other words, it tells us how capable the model is of doing its job. For our proposal, we consider it a good performance to reach a recall of **80 or more**. The average recall in our theoretical framework is **91.86**, so our goal is to reach **90% recall**.
+
+### F1-Score
+
+The F1-Score combines accuracy and recall metrics into a single indicator. It is calculated using the harmonic mean of both metrics and allows evaluating the balance between correctly detecting cases of plagiarism and avoiding false alarms. This metric is especially useful when there is an imbalance between classes or when seeking a comprehensive evaluation of model performance. For our proposal, we consider it good performance to reach an F1-Score of **80 or more**. The average of the F1-Scores in our theoretical framework is **90.78**, so our goal is to reach **89% F1-Score**.
+
+---
+
+## Results
+
+Tables for AI
+
+Table for plagiarism
+
+---
+
+## Result Interpretation
+
+Description for AI
+
+Description for plagiarism
+
+---
+
+## Sanity Checks
+
+Several validation procedures were performed to verify the reliability of the results.
+
+- Duplicate Embedding Check
+- Shuffled Label Test: Training labels were randomly shuffled and the model was retrained.
+
+#### Suffling results
+
+| Metric | Validation | Test |
+|---------|-----------:|------:|
+| Accuracy | 0.4290 | 0.4263 |
+| F1-Score | 0.4277 | 0.4248 |
+
+The significant performance drop indicates that the original results are not caused by label leakage.
+
+- Metric Consistency
+
+Accuracy, Precision, Recall, and F1-Score produced nearly identical values because:
+
+1. The dataset is balanced.
+2. The confusion matrix is highly symmetric.
+3. Classification errors are evenly distributed.
+
+---
+
+## Conclusions
+
+This project demonstrates that CodeBERT embeddings are highly effective for detecting AI-generated Java source code.
+
+The Random Forest classifier achieved near-perfect performance when operating on CodeBERT embeddings, indicating that most predictive power originates from the embedding representation itself.
+
+Stylometric and AST-based features also contributed meaningful information, achieving an F1-Score of approximately **0.7344** when used independently.
+
+Overall, the project combines semantic, structural, and stylistic representations to analyze Java source code.
+
+---
+
+## Future Work
+
+Potential future improvements include:
+
+- Evaluating external datasets.
+- Comparing additional classifiers such as:
+  - SVM
+  - XGBoost
+  - Logistic Regression
+- Extending the framework to additional programming languages.
+
+---
+
+## References
 
 [^1]: A. Ramachandra, S. Chaudhary, J. Tran, R. Desai, A. Pang, and M. Salloum, "Detecting AI-Generated Code in Introductory Programming Courses,” *Proceedings of the 57th ACM Technical Symposium on Computer Science Education*, vol. 1, pp. 894–900, Feb. 2026, doi: 10.1145/3770762.3772522. [Online]. Available: https://doi.org/10.1145/3770762.3772522.
 
