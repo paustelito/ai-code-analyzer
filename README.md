@@ -343,6 +343,42 @@ Unlike the AI detection pipeline, the plagiarism detection model uses CodeBERT d
 
 Since CodeBERT is computationally expensive, the training process was executed using Google Colab GPU.
 
+### Cosine Similarity Comparison
+
+After generating semantic embeddings with CodeBERT, plagiarism detection is performed using Cosine Similarity.
+
+Each Java source code file is independently transformed into a dense vector representation (embedding). These embeddings capture semantic and syntactic characteristics learned by CodeBERT during pretraining and fine-tuning.
+
+Given two embeddings, (emb1) and (emb2), their similarity is measured using cosine similarity:
+
+```python 
+sim = cosine_similarity(
+  emb1.reshape(1, -1),
+  emb2.reshape(1, -1)
+)[0][0]
+```
+Cosine similarity evaluates the angle between two vectors rather than their magnitude, making it particularly suitable for comparing semantic embeddings.
+
+The resulting score ranges from:
+
+- 1 → highly similar programs
+- 0 → unrelated programs
+- -1 → completely opposite representations
+
+Since plagiarism detection is formulated as a binary classification problem, a similarity threshold must be defined.
+
+The classification rule is:
+
+- Similarity ≥ Threshold → Plagiarized
+- Similarity < Threshold → Non-Plagiarized
+
+Rather than selecting the threshold arbitrarily, multiple threshold values were evaluated on the validation set. The threshold that produced the highest F1-Score was selected as the final decision boundary.
+
+This approach allows the system to balance false positives and false negatives while maximizing overall classification performance.
+
+The use of semantic embeddings followed by similarity comparison is consistent with methodologies reported by Rong & Zhou (2025)[2], Siddiqui & Deepshikha (2025)[3], and Álvarez-Fidalgo & Ortin (2024)[6], where code representations are compared through similarity or distance measures to determine whether two programs correspond to clone pairs or plagiarized implementation
+
+
 ### Random Forest Decoder
 
 The decoder receives numerical representations of the Java code instead of raw source code. Three input configurations were evaluated:
@@ -422,10 +458,32 @@ An ablation experiment was also performed to compare the contribution of each in
 
 ### Plagiarism detection results
 
-Description 1 - Yael
+The plagiarism detection pipeline uses CodeBERT as a semantic encoder and cosine similarity as the comparison metric between Java source code embeddings.
+
+Each source code file is independently transformed into a semantic embedding. Afterwards, cosine similarity is computed between both embeddings. A similarity threshold is then applied to determine whether the pair is classified as plagiarism or non-plagiarism.
+
+The threshold was selected experimentally by maximizing the F1-Score on the validation set.
+
+| Metric | Train | Validation | Test |
+|---------|-----------:|------:|---------:|
+| Accuracy | 0.9748 | 0.9663 | 0.9679 |
+| Precision | 0.9598 | 0.9663 | 0.9679 |
+| Recall | 0.9910 | 0.9663 | 0.9679 |
+| F1-score | 0.9752 | 0.9663 | 0.9679 |
+
+These results indicate that the embedding-based approach is highly effective at identifying plagiarized Java source code pairs. Performance remains consistent across training, validation and testing datasets, suggesting good generalization and limited overfitting.
 
 <br>
-<img src="images/insert_image.png" width="300">
+<img src="/images/confusion_matrix_plagiarism.png" width="300">
+
+The confusion matrix shows that most code pairs are correctly classified.
+
+- 11,502 original pairs were correctly identified as non-plagiarized.
+- 11,892 plagiarized pairs were correctly detected.
+- Only 498 false positives were produced.
+- Only 108 plagiarized pairs were missed.
+
+The relatively small number of errors demonstrates that cosine similarity over CodeBERT embeddings is capable of capturing semantic relationships between source code fragments beyond simple textual matching.
 
 Description 1 - Pau
 
