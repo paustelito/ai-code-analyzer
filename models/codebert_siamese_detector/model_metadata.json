@@ -1,0 +1,8 @@
+{
+  "best_distance_threshold": 0.75,
+  "val_f1": 0.9887,
+  "test_f1": 0.9833,
+  "epochs_trained": 4,
+  "clone_mean_D": 0.0285,
+  "non_clone_mean_D": 1.0537
+}
