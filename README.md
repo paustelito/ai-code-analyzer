@@ -501,7 +501,7 @@ The small difference between training (97.48%) and testing (96.79%) suggests tha
 These results surpass those reported by Siddiqui and Deepshikha (2025), who obtained F1 values ​​between 88% and 91%, suggesting that the combination of CodeBERT and cosine similarity is an effective alternative for detecting semantic similarity in Java source code.
 
 <br>
-<img src="/images/confusion_matrix_plagiarism.png" width="300">
+<img src="./images/MC_plagarismCS.png" width="300">
 
 The confusion matrix shows that most code pairs are correctly classified.
 
@@ -571,6 +571,7 @@ From the perspective of academic plagiarism detection, false negatives represent
 On the other hand, the 32 false positives indicate that some original programs were considered plagiarized. This behavior may be due to different students implementing equivalent solutions using similar control structures, algorithms, or programming patterns, generating close embeddings within the vector space learned by the network.
 
 The reduced difference between false positives and false negatives demonstrates a suitable balance between accuracy and recall, a situation that is also reflected in the metrics obtained, where both values ​​reach approximately 98.34%.
+
 ---
 
 ## Result Interpretation
