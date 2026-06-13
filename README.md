@@ -656,7 +656,7 @@ In conclusion, the proposed system successfully fulfills its objectives by provi
 ## Future Work
 
 Potential future improvements include:
-
+  
 - Evaluating external datasets.
 - Comparing additional classifiers such as:
   - SVM
